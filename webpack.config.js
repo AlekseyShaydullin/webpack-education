@@ -4,6 +4,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
+  mode: 'development',
   entry: {
     main: './index.js',
     analytics: './analytics.js'
@@ -12,7 +13,15 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
   },
-  mode: 'development',
+  resolve: {
+    extensions: ['.js', '.json', '.png'],
+    alias: {
+      '@models': path.resolve(__dirname, 'src/models'),
+      '@': path.resolve(__dirname, 'src'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+    }
+  },
   devServer: {
     static: path.resolve(__dirname, 'dist'),
     compress: true,
@@ -35,7 +44,11 @@ module.exports = {
       {
         test: /\.(png|jpg|svg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource'
-      }
+      },
+      {
+        test: /\.csv$/,
+        use: ['csv-loader']
+      },
     ]
   }
 }
