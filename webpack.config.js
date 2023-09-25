@@ -26,6 +26,24 @@ const optimization = () => {
   return config
 }
 
+const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
+
+const cssLoaders = extra => {
+  const loaders = [
+    MiniCssExtractPlugin.loader, {
+    loader: 'css-loader',
+    options: { importLoaders: 1 }
+    },
+    'postcss-loader'
+  ]
+
+  if (extra) {
+    loaders.push(extra);
+  }
+
+  return loaders
+}
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
@@ -35,7 +53,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
+    filename: filename('js'),
   },
   resolve: {
     extensions: ['.js', '.json', '.png'],
@@ -69,17 +87,23 @@ module.exports = {
         ]
       }
     ),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: filename('css'),
+    })
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, {
-          loader: 'css-loader',
-          options: { importLoaders: 1 }
-        },
-          'postcss-loader']
+        use: cssLoaders()
+      },
+      {
+        test: /\.less$/,
+        use: cssLoaders('less-loader')
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: cssLoaders('sass-loader')
       },
       {
         test: /\.(png|jpg|svg|gif|woff(2)?|eot|ttf|otf)$/,
