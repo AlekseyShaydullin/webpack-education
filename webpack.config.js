@@ -28,6 +28,11 @@ module.exports = {
     port: 8080,
     open: true
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
