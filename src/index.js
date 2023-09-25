@@ -8,7 +8,7 @@ import csv from '@assets/data.csv';
 
 const post = new Post('Post title', logo);
 
-$('pre').html(post.toString());
+$('pre').addClass('code').html(post.toString());
 
 // console.log('JSON: ', json);
 // console.log('XML', xml);
