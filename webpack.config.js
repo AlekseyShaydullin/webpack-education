@@ -113,6 +113,11 @@ module.exports = {
         test: /\.csv$/,
         use: ['csv-loader']
       },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: '/node_modules/'
+      },
     ]
   }
 }
