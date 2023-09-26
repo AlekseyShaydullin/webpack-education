@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
@@ -47,6 +49,7 @@ const cssLoaders = extra => {
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
+  devtool: 'source-map',
   entry: {
     main: './index.jsx',
     analytics: './analytics.ts'

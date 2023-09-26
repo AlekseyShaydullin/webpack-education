@@ -1,6 +1,6 @@
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 import Post from '@models/Post';
 import '@styles/styles.css';
 import '@styles/less.less';
@@ -13,6 +13,7 @@ import logo from '@assets/webpack-logo.png';
 
 const post = new Post('Post title', logo);
 // $('pre').addClass('code').html(post.toString());
+console.log('Post to string', post.toString());
 
 const App = () => (
   <div className="container">

@@ -13,4 +13,4 @@ const presets = [
   ["@babel/preset-react"]
 ];
 
-module.exports = { presets }; 
+export default { presets }; 
