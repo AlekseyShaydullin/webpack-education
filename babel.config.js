@@ -8,7 +8,9 @@ const presets = [
       safari: '11.1'
     },
     useBuiltIns: "entry"
-  }]
+  }],
+  ['@babel/preset-typescript'],
+  ["@babel/preset-react"]
 ];
 
 module.exports = { presets }; 
